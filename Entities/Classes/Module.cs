@@ -29,9 +29,14 @@ namespace Entities
             foreach (var part in Parts)
             {
                 Console.WriteLine($"- {part.Type} : {part.Name} / Mnyfacturer - {part.Company} ");
-               
+                
             }
             Console.WriteLine("**********************************************");
+        }
+
+        public override string PrintInfoShort()
+        {
+            return $"Module : {Type}";
         }
     }
 }

@@ -36,5 +36,10 @@ namespace Entities
             Console.WriteLine($" {Id}) {Type} : {Name} / Price : {Price}eur - Discount: {Discount} / Mnyfacturer - {Company} / Warrenty : {War} / Stack : {quan}");
             Console.WriteLine("-------------------------------------------------------------------------------");
         }
+
+        public override string PrintInfoShort()
+        {
+            return $"{Type} : {Name}";
+        }
     }
 }

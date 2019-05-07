@@ -37,5 +37,7 @@ namespace Entities
         }
 
         public abstract void PrintInfo();
+        public abstract string PrintInfoShort();
+
     }
 }

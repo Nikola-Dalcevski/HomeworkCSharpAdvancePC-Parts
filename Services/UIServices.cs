@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.Classes;
+using Entities.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -215,10 +216,10 @@ namespace Services
                 Console.WriteLine("1) Continue shopping the same prodcts");
                 Console.WriteLine("2) Search products again");
                 Console.WriteLine("3) See cart");
-                Console.WriteLine("4) Continue to check out");
+               
 
                 bool IsNumber = int.TryParse(Console.ReadLine(), out int choice);
-                if (IsNumber && choice > 0 && choice < 5)
+                if (IsNumber && choice > 0 && choice < 4)
                 {
                     return choice;
                 }
@@ -226,6 +227,52 @@ namespace Services
                 Console.ReadLine();
             }
         }
+
+        public int UserShopingChartAction()
+        {
+            while (true)
+            {
+                Console.WriteLine("1) press 1 to go to Checkout");
+                Console.WriteLine("2) press 2 to continue shopping");
+                bool isNumber = int.TryParse(Console.ReadLine(), out int choice);
+                if (!isNumber || choice < 1 && choice > 2)
+                {
+                    Console.WriteLine("You entered invalid number please try again");
+                    continue;
+                }
+                return choice;
+            }
+           
+        }
+
+        public void SendEventMenu(string message, User user , Publisher publisher)
+        {
+
+            Console.WriteLine("Do you What To Recive Sms with your Recipt Y/n");
+            string choice = Console.ReadLine();
+            if(choice != "n" && choice != "N")
+            {
+                publisher.DataProcessingHandler += user.GetSms;
+            }
+            Console.WriteLine("Do you What To Recive Email with your Recipt Y/n");
+            string choice1 = Console.ReadLine();
+            if(choice1 != "n" && choice1 != "N")
+            {
+                publisher.DataProcessingHandler += user.GetEmail;
+            }
+            Console.WriteLine("Do you What To Recive Post Mail with your Recipt Y/n");
+            string choice2 = Console.ReadLine();
+            if(choice2 != "n" && choice2 != "N")
+            {
+                publisher.DataProcessingHandler += user.GetMail;
+            }
+
+            publisher.ProcessingData(message);
+            Console.ReadLine();
+
+        }
+
+        
       
     }
 }

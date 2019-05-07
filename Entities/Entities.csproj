@@ -51,6 +51,8 @@
     <Compile Include="Enums\ConfigurationType.cs" />
     <Compile Include="Enums\ModuleType.cs" />
     <Compile Include="Enums\PartType.cs" />
+    <Compile Include="Events\Publisher.cs" />
+    <Compile Include="Events\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,5 +41,10 @@ namespace Entities
             }
             Console.WriteLine("************************************************************************************************");          
         }
+
+        public override string PrintInfoShort()
+        {
+            return $"{Title}";
+        }
     }
 }

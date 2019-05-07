@@ -1,6 +1,7 @@
 ﻿
 using Entities;
 using Entities.Classes;
+using Entities.Events;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -93,13 +94,13 @@ namespace ConsoleApp
                     Db.Parts[2],
                     Db.Parts[4]
                 }),
-                new Module(56, 340, 280, ModuleType.Memory, new List<Part>()
+                new Module(56, 340, 0.1, ModuleType.Memory, new List<Part>()
                 {
                     Db.Parts[25],
                     Db.Parts[28],
                     Db.Parts[30]
                 }),
-                new Module(57, 250, 320, ModuleType.Memory, new List<Part>()
+                new Module(57, 250, 0.15, ModuleType.Memory, new List<Part>()
                 {
                     Db.Parts[27],
                     Db.Parts[32]
@@ -181,6 +182,9 @@ namespace ConsoleApp
                 var choice = new UIServices();
                 var UserChoiseCategory = choice.UserChoiceCategory();            
                 List<Item> products = new List<Item>();
+
+                User nikola = new User("Nikola");
+                Publisher publisher = new Publisher();
                 
                 if (UserChoiseCategory == 1) products.AddRange(Db.Parts);
                 else if (UserChoiseCategory == 2) products.AddRange(Db.Modules);
@@ -201,10 +205,21 @@ namespace ConsoleApp
                             {
                                 ShoppingCart.ShowUserProducts();
                                 Console.ReadLine();
+                                int choice1 = choice.UserShopingChartAction();
+                                if (choice1 == 1)
+                                {
+                                    string message = ShoppingCart.ShowProductPrices();
+                                   // Console.WriteLine(ShoppingCart.ShowProductPrices());
+                                    Console.ReadLine();
+                                    choice.SendEventMenu(message, nikola, publisher);
+                                    Console.ReadLine();
+                                }
+                               
                                 break;
                             }
-                            else if (userContinue == 4) { Console.WriteLine("Check out"); Console.ReadLine(); break; }
+                          
                         }
+                      
                     }
                     else if (filterChoise == 2)
                     {
@@ -217,12 +232,25 @@ namespace ConsoleApp
                             else if (userContinue == 3)
                             {
                                 ShoppingCart.ShowUserProducts();
+                                
                                 Console.ReadLine();
+                                Console.Clear();
+                                int choice1 = choice.UserShopingChartAction();
+                                if (choice1 == 1)
+                                {
+                                    string message = ShoppingCart.ShowProductPrices();
+                                    //Console.WriteLine(ShoppingCart.ShowProductPrices());
+                                    Console.ReadLine();
+                                    choice.SendEventMenu(message, nikola, publisher);
+                                    Console.ReadLine();
+                                }
+
                                 break;
                             }
-                            else if (userContinue == 4) Console.WriteLine("Check out");
+                          
+                            
                         }
-
+                       
                     }
                     else if (filterChoise == 3)
                     {
@@ -239,18 +267,31 @@ namespace ConsoleApp
                             {
                                 ShoppingCart.ShowUserProducts();
                                 Console.ReadLine();
+                                int choice1 = choice.UserShopingChartAction();
+                                if (choice1 == 1)
+                                {
+                                    string message = ShoppingCart.ShowProductPrices();
+                                   // Console.WriteLine(ShoppingCart.ShowProductPrices());
+                                    Console.ReadLine();
+                                    choice.SendEventMenu(message, nikola, publisher);
+                                    Console.ReadLine();
+                                }
+                               
                                 break;
                             }
-                            else if (userContinue == 4) Console.WriteLine("Check out");
+                          
+                            
                         }
+                         
                     }
                     break;
                 }
-              
+
+               
 
 
 
-        } 
+            } 
         }
     }
 }
